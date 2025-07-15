@@ -91,39 +91,45 @@ def check_dictionary_structure(base_path):
 
 def print_dictionary_structure(dictionary, indent=0):
     """
-    Recursively scans a directory and builds a nested dictionary
-    representing its structure, including subfolders and files.
+    Recursively prints a visual representation of a nested dictionary
+    that describes a folder structure.
 
-    Args:
-        base_path (str): The root directory path to scan.
-
-    Returns:
-        dict: A nested dictionary with the following format:
-            {
-                "current_folder_name": {
-                    "folder": {
-                        "subfolder_name": { ... },
-                        ...
-                    },
-                    "file": [
-                        "file1.ext",
-                        "file2.ext",
-                        ...
-                    ]
-                }
-            }
-
-    Example:
-        >>> check_dictionary_structure("/path/to/dir")
+    The dictionary should follow this structure:
         {
-            "dir": {
+            "folder_name": {
                 "folder": {
                     "subfolder1": {...},
-                    "subfolder2": {...}
+                    ...
                 },
-                "file": ["file1.txt", "file2.txt"]
+                "file": [
+                    "file1.ext",
+                    "file2.ext",
+                    ...
+                ]
             }
         }
+
+    Args:
+        dictionary (dict): A nested dictionary representing folders and files.
+        indent (int): Current indentation level (used internally for recursion).
+
+    Example:
+        >>> sample = {
+        ...     "project": {
+        ...         "folder": {
+        ...             "src": {
+        ...                 "folder": {},
+        ...                 "file": ["main.py"]
+        ...             }
+        ...         },
+        ...         "file": ["README.md"]
+        ...     }
+        ... }
+        >>> print_dictionary_structure(sample)
+        project/
+          src/
+            main.py
+          README.md
     """
 
     for base_key in dictionary.keys():
